@@ -1,5 +1,5 @@
 resources:
-  - kafka
+  - kafka.yaml
   #- rabbitmq.yaml
   #- consul.yaml
   #- mongodb.yaml
