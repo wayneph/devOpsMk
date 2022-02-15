@@ -4,6 +4,6 @@ resources:
   - deployer-role.yaml
   - engineering-bind.yaml
   - engineering-role.yaml
-  - vault-role-tokenreview-bind.yaml
   - viewer-bind.yaml
   - viewer-role.yaml
+   #- vault-role-tokenreview-bind.yaml
