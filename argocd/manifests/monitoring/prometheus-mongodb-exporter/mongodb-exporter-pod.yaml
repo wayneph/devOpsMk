@@ -1,0 +1,81 @@
+---
+# Source: prometheus-mongodb-exporter/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-metrics
+  namespace: data-mongodb
+  labels:
+    app.kubernetes.io/name: prometheus-mongodb-exporter
+    app.kubernetes.io/instance: mongodb-metrics
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: prometheus-mongodb-exporter-2.8.1
+    app: mongodb-service
+  annotations:
+    {}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus-mongodb-exporter
+      app.kubernetes.io/instance: mongodb-metrics
+  template:
+    metadata:
+      annotations:
+        checksum/config: 333bce2878aab8afff2d18fc59e6eba2514d49b34605a0670c58b755d5c15d6a
+      labels:
+        app.kubernetes.io/name: prometheus-mongodb-exporter
+        app.kubernetes.io/instance: mongodb-metrics
+    spec:
+      serviceAccountName: mongodb-metrics
+      containers:
+      - name: mongodb-exporter
+        env:
+          - name: MONGODB_URI
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-metrics
+                key: mongodb-uri
+        image: "ssheehy/mongodb-exporter:0.10.0"
+        imagePullPolicy: IfNotPresent
+        args:
+        - --web.listen-address=:9216
+        - --collect.collection
+        - --collect.database
+        - --collect.indexusage
+        - --collect.topmetrics
+        - --collect.connpoolstats
+        ports:
+        - name: metrics
+          containerPort: 9216
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: metrics
+          initialDelaySeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: metrics
+          initialDelaySeconds: 10
+        resources:
+          {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - all
+          readOnlyRootFilesystem: true
+          runAsGroup: 10000
+          runAsNonRoot: true
+          runAsUser: 10000
+      affinity:
+        {}
+      imagePullSecrets:
+        []
+      nodeSelector:
+        {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+        []

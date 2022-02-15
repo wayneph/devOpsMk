@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@bitbucket.org:prevoirsolutionsinformatiques/gitops-baremetal.git
+    targetRevision: HEAD
+    path: manifests/core/nginx
+    helm:
+      values: |
+        replicas: 3
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: web
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

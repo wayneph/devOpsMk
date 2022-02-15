@@ -1,0 +1,2 @@
+imagePullSecret: gcr-json-key
+host: insight.baremetal.prevoir.mu

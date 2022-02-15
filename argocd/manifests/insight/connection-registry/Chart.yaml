@@ -1,0 +1,10 @@
+name: connection-registry
+apiVersion: v2
+version: 0.0.1
+appVersion: 0.0.1
+description: Connection-Registry
+keywords:
+  - services
+  - connection-registry
+maintainers:
+  - name: Prevoir Solutions Informatiques

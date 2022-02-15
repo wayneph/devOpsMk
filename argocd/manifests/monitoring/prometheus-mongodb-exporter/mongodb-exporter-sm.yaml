@@ -1,0 +1,30 @@
+---
+# Source: prometheus-mongodb-exporter/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mongodb-metrics
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: prometheus-mongodb-exporter
+    app.kubernetes.io/instance: mongodb-metrics
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: prometheus-mongodb-exporter-2.8.1
+    app: mongodb-service
+spec:
+  endpoints:
+  - port: metrics
+    interval: 30s
+    scrapeTimeout: 10s
+    relabelings:
+    - sourceLabels:
+      - __meta_kubernetes_endpoint_node_name
+      targetLabel: instance
+  namespaceSelector:
+    matchNames:
+    - data-mongodb
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus-mongodb-exporter
+      app.kubernetes.io/instance: mongodb-metrics
+      app: mongodb-service

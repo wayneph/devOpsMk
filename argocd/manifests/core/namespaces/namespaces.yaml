@@ -1,0 +1,77 @@
+## Kubernetes Manifest File to Create all Pre-Defined NameSpaces
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: common
+  labels:
+    name: common
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: insight
+  labels:
+    name: insight
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: data-mongodb
+  labels:
+    name: data-mongodb
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: web
+  labels:
+    name: web
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: monitoring
+  labels:
+    name: monitoring
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: linkerd
+  labels:
+    name: linkerd
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: metallb-system
+  labels:
+    name: metallb-system
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: pgo
+  labels:
+    name: pgo
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: cert-manager
+  labels:
+    name: cert-manager
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: logging
+  labels:
+    name: logging
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: keycloak
+  labels:
+    name: keycloak

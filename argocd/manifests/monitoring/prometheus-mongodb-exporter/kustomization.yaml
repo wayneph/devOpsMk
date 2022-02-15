@@ -1,0 +1,6 @@
+resources:
+  - mongodb-exporter-secret.yaml
+  - mongodb-exporter-sa.yaml
+  - mongodb-exporter-svc.yaml
+  - mongodb-exporter-pod.yaml
+  - mongodb-exporter-sm.yaml

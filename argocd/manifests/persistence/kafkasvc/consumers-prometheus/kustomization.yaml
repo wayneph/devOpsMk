@@ -1,0 +1,3 @@
+resources:
+- kminion-service.yaml
+- kminion.yaml

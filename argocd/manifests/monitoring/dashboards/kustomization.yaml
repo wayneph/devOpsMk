@@ -1,0 +1,5 @@
+resources:
+  - cluster-dashboards
+  - calico-dashboards
+  - mongodb-dashboards
+  - ceph-dashboards

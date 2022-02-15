@@ -1,0 +1,23 @@
+global:
+  # serviceAccountName is the name of the service account shared between insight services
+  serviceAccountName: insight-service-account
+  # namespace is the global namespace for all insight services
+  namespace: insight
+  # repository is the main Docker registry from which service images are pulled
+  repository: europe-west4-docker.pkg.dev/insight-version-2/service
+  # pullPolicy to be used for the image artifacts
+  pullPolicy: IfNotPresent
+  # frontendServicePort is the port exposed inside the cluster
+  frontendServicePort: 8080
+  # backendServicePort is the port exposed inside the cluster
+  backendServicePort: 3245
+
+## Frontend Container
+frontendContainer:
+  # name is the identifier (and/or prefix) for the specific service
+  name: frontend-container
+
+## Connection Registry
+connectionRegistry:
+  # name is the identifier (and/or prefix) for the specific service
+  name: connection-registry

@@ -1,0 +1,7 @@
+resources:
+  - namespaces.yaml
+  #- rbac.yaml
+  #- cert-manager.yaml
+  #- nginx.yaml
+  #- metallb.yaml
+  #- metrics-server.yaml

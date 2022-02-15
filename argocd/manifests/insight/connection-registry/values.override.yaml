@@ -1,0 +1,34 @@
+frontend:
+  replicas: 1
+  imageTag: commit-f81e5fb2f93b633c834ace7ca352fc4869c23961
+  environment:
+    baseUrl: http://localhost:10003/
+backend:
+  replicas: 1
+  imageTag: commit-c68cace073c01fba886a32c41711c6c981f4d014
+  environment:
+    general:
+      logFormat: plain
+      logLevel: INFO
+    api:
+      accessControlAllowedMethods: "*"
+      accessControlAllowedOrigins: "*"
+    mongodb:
+      host: mongodb-0.mongodb-headless.data-mongodb.svc.insightv2.k8cluster,mongodb-1.mongodb-headless.data-mongodb.svc.insightv2.k8cluster,mongodb-2.mongodb-headless.data-mongodb.svc.insightv2.k8cluster
+      port: 27017
+      authDatabase: admin
+      database: connection-registry
+      replicaSetName: rs0
+    rabbitmq:
+      host: prevoir-dev-rabbitmq.rabbitmq-system.svc.insightv2.k8cluster
+      port: 5672
+      exchangeType: topic
+      exchangeDurable: true
+      exchangeAutoDelete: false
+      queueConnectionRegistry: connection-registry.queue
+    vault:
+      address: http://vault-chart.data-vault.svc.insightv2.k8cluster:8200
+      token: s.sZ8bgGjTDobkbcra1wAv0muC
+      basePath: secret/
+      roleMongoDB: connection-registry
+      roleRabbitMQ: connection-registry

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.connectionRegistry.name }}-frontend
+  namespace: {{ .Values.global.namespace }}
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.connectionRegistry.name }}-frontend
+  template:  
+    metadata:
+      labels:
+        app: {{ .Values.connectionRegistry.name }}-frontend
+    spec:
+      serviceAccountName: {{ .Values.global.serviceAccountName }}
+      containers:
+        - name: {{ .Values.connectionRegistry.name }}-frontend
+          image: "{{ .Values.global.repository }}/{{ .Values.frontend.imageName }}:{{ .Values.frontend.imageTag }}"
+          imagePullPolicy: {{ .Values.global.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.frontend.containerPort }}
+              protocol: TCP
+          env: 
+          - name: BASE_URL
+            value: {{ .Values.frontend.environment.baseUrl }}

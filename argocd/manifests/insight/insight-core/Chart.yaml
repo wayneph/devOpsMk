@@ -1,0 +1,11 @@
+name: insight-core
+apiVersion: v2
+version: 0.0.1
+appVersion: 0.0.1
+description: iNSight Core
+keywords:
+  - services
+  - insight
+  - core
+maintainers:
+  - name: Prevoir Solutions Informatiques

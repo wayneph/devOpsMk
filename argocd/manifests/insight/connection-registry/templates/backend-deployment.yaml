@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.connectionRegistry.name }}-backend
+  namespace: {{ .Values.global.namespace }}
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.connectionRegistry.name }}-backend
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.connectionRegistry.name }}-backend
+    spec:
+      serviceAccountName: {{ .Values.global.serviceAccountName }}
+      containers:
+        - name: {{ .Values.connectionRegistry.name }}-backend
+          image: "{{ .Values.global.repository }}/{{ .Values.backend.imageName }}:{{ .Values.backend.imageTag }}"
+          imagePullPolicy: {{ .Values.global.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.backend.containerPort }}
+              protocol: TCP
+          env:
+          # General
+          - name: LOG_FORMAT
+            value: "{{ .Values.backend.environment.general.logFormat }}"
+          - name: LOG_LEVEL
+            value: "{{ .Values.backend.environment.general.logLevel }}"
+          # API
+          - name: API_ACCESS_CONTROL_ALLOWED_METHODS
+            value: "{{ .Values.backend.environment.api.accessControlAllowedMethods }}"
+          - name: API_ACCESS_CONTROL_ALLOWED_ORIGINS
+            value: "{{ .Values.backend.environment.api.accessControlAllowedOrigins }}"
+          # MongoDB
+          - name: MONGODB_HOST
+            value: "{{ .Values.backend.environment.mongodb.host }}"
+          - name: MONGODB_PORT
+            value: "{{ .Values.backend.environment.mongodb.port }}"
+          - name: MONGODB_AUTH_DATABASE
+            value: "{{ .Values.backend.environment.mongodb.authDatabase }}"
+          - name: MONGODB_DATABASE
+            value: "{{ .Values.backend.environment.mongodb.database }}"
+          - name: MONGODB_REPLICA_SET_NAME
+            value: "{{ .Values.backend.environment.mongodb.replicaSetName }}"
+          # RabbitMQ
+          - name: RABBITMQ_HOST
+            value: "{{ .Values.backend.environment.rabbitmq.host }}"
+          - name: RABBITMQ_PORT
+            value: "{{ .Values.backend.environment.rabbitmq.port }}"
+          - name: RABBITMQ_EXCHANGE_TYPE
+            value: "{{ .Values.backend.environment.rabbitmq.exchangeType }}"
+          - name: RABBITMQ_EXCHANGE_DURABLE
+            value: "{{ .Values.backend.environment.rabbitmq.exchangeDurable }}"
+          - name: RABBITMQ_EXCHANGE_AUTO_DELETE
+            value: "{{ .Values.backend.environment.rabbitmq.exchangeAutoDelete }}"
+          - name: RABBITMQ_QUEUE_CONNECTION_REGISTRY
+            value: "{{ .Values.backend.environment.rabbitmq.queueConnectionRegistry }}"
+          # Vault
+          - name: VAULT_ADDRESS
+            value: "{{ .Values.backend.environment.vault.address }}"
+          - name: VAULT_TOKEN
+            value: "{{ .Values.backend.environment.vault.token }}"
+          - name: VAULT_BASE_PATH
+            value: "{{ .Values.backend.environment.vault.basePath }}"
+          - name: VAULT_ROLE_MONGODB
+            value: "{{ .Values.backend.environment.vault.roleMongoDB }}"
+          - name: VAULT_ROLE_RABBITMQ
+            value: "{{ .Values.backend.environment.vault.roleRabbitMQ }}"

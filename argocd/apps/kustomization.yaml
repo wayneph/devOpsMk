@@ -1,0 +1,9 @@
+resources:
+  - core.yaml
+  # - persistence.yaml
+  # - storage.yaml
+  # - persistence.yaml
+  # - monitoring.yaml
+  # - logging.yaml
+  # - security.yaml
+  # - insight.yaml

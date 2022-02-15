@@ -1,0 +1,4 @@
+replicas: 1
+imageTag: commit-45360d33180ec1c6065ec9199d8ea3b73fdc043e
+environment:
+  connectionRegistryUrl: http://localhost:10002

@@ -1,0 +1,4 @@
+resources:
+  - ceph-cluster.yaml
+  - ceph-osd-single.yaml
+  - ceph-pool.yaml

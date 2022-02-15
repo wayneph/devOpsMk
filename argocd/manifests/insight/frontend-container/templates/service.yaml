@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.frontendContainer.name }}
+  namespace: {{ .Values.global.namespace }}
+spec:
+  selector:
+    app: {{ .Values.frontendContainer.name }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.global.frontendServicePort }}
+      targetPort: http
+      name: http

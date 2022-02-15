@@ -1,0 +1,67 @@
+frontend:
+  # replicas is the number instances of this component to spawn
+  replicas: 1
+  # containerPort is the port used by the web server application
+  containerPort: 8080
+  # imageName is the image name for the service
+  imageName: connection-registry-frontend
+  # imageTag is the version string for the service image
+  imageTag: commit-XXX
+  environment:
+    # baseUrl is the URL used for API communication to the Backend component
+    baseUrl: http://connection-registry-backend:8080/
+backend:
+  # replicas is the number instances of this component to spawn
+  replicas: 1
+  # containerPort is the port used by the Java application
+  containerPort: 8080
+  # imageName is the image name for the service
+  imageName: connection-registry-backend
+  # imageTag is the version string for the service image
+  imageTag: commit-XXX
+  environment:
+    general:
+      # logFormat specifies the log entry format
+      logFormat: plain    
+      # logLevel specifies the logging level for the application
+      logLevel: INFO
+    api:
+      # accessControlAllowedMethods is to specify the allowed HTTP methods to the backend
+      accessControlAllowedMethods: "*"
+      # accessControlAllowedOrigins is to specify the allowed origin for API calls
+      accessControlAllowedOrigins: "*"
+    mongodb:
+      # host is the hostname for the MongoDB endpoint
+      host: mongodb-host
+      # port is the port number for the MongoDB endpoint
+      port: 27017
+      # authDatabase is the name of the admin database to pull metadata from
+      authDatabase: admin
+      # database is the name of the data-oriented document store
+      database: mongodb-primary
+      # replicaSetName is the replica set name used for the MongoDB cluster
+      replicaSetName: rs0
+    rabbitmq:
+      # host is the hostname for the RabbitMQ endpoint
+      host: rabbitmq-host
+      # port is the portn number for the RabbitMQ endpoint
+      port: 5672
+      # exchangeType specifies the client-side exchange type
+      exchangeType: topic
+      # exchangeDurable specifies if exchanges are to be flagged as durable
+      exchangeDurable: true
+      # exchangeAutoDelete enables auto delete of exchanges
+      exchangeAutoDelete: false
+      # queueConnectionRegistry specifies the queue name for this service
+      queueConnectionRegistry: connection-registry.queue
+    vault:
+      # address is the hostname for the Vault endpoint
+      address: http://vault-host:8200
+      # token is the secret key used for authentication
+      token: a-very-long-root-token
+      # basePath is the prefix for all queries to push/pull secrets from/to Vault
+      basePath: secret/
+      # roleMongoDB is the name of the role for MongoDB
+      roleMongoDB: prevoir-mongodb-user
+      # roleRabbitMQ is the name of the role for RabbitMQ
+      roleRabbitMQ: prevoir-rabbitmq-user

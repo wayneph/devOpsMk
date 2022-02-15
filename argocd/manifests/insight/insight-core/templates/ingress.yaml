@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: insight-ingress
+  namespace: {{ .Values.global.namespace }}
+spec:
+  rules:
+  - host: {{ .Values.host }}
+    http:
+      paths:
+      - path: {{ .Values.connectionRegistry.frontend.pathPrefix }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.connectionRegistry.name }}-frontend
+            port: 
+              number: {{ .Values.global.frontendServicePort }}
+      - path: {{ .Values.frontendContainer.pathPrefix }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.frontendContainer.name }}
+            port: 
+              number: {{ .Values.global.frontendServicePort }}
+  ingressClassName: nginx

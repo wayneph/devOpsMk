@@ -1,0 +1,15 @@
+# imagePullSecret is secret used for login to the Docker registry to pull images
+imagePullSecret: image-pull-secret
+# host is the DNS name used by the ingress controller to the service
+host: insight.prevoir.mu
+
+## Frontend Container
+frontendContainer:
+  # pathPrefix is used to filter on for the service
+  pathPrefix: /
+
+## Connection Registry
+connectionRegistry:
+  frontend:
+    # pathPrefix is used to filter on for the service
+    pathPrefix: /connections

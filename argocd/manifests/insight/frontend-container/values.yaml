@@ -1,0 +1,11 @@
+# replicas is the number instances of this component to spawn
+replicas: 1
+# containerPort is the port used by the web server application
+containerPort: 8080
+# imageName is the image name for the service
+imageName: frontend-container
+# imageTag is the version string for the service image
+imageTag: commit-XXX
+environment:
+  # connectionRegistryUrl is the URL used for the Connection Registry micro frontend
+  connectionRegistryUrl: https://connection-registry-frontend/

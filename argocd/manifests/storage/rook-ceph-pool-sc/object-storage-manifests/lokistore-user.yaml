@@ -1,0 +1,8 @@
+  apiVersion: ceph.rook.io/v1
+  kind: CephObjectStoreUser
+  metadata:
+    name: prevoir-user
+    namespace: rook-ceph
+  spec:
+    store: prevoir-bm-store
+    displayName: "prevoir-loki-user"

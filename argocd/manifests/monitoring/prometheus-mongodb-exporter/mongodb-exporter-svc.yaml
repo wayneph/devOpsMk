@@ -1,0 +1,25 @@
+---
+# Source: prometheus-mongodb-exporter/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-metrics
+  namespace: data-mongodb
+  labels:
+    app.kubernetes.io/name: prometheus-mongodb-exporter
+    app.kubernetes.io/instance: mongodb-metrics
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: prometheus-mongodb-exporter-2.8.1
+    app: mongodb-service
+  annotations:
+    {}
+spec:
+  ports:
+    - port: 9216
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+  selector:
+    app.kubernetes.io/name: prometheus-mongodb-exporter
+    app.kubernetes.io/instance: mongodb-metrics
+  type: ClusterIP

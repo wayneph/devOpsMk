@@ -1,0 +1,12 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: engineering-role-binding
+  namespace: common
+subjects:
+- kind: User
+  name: riaan.pretorius@4cgroup.co.za
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: engineering-role

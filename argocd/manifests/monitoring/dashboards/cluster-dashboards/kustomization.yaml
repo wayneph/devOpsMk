@@ -1,0 +1,15 @@
+resources:
+  - apiserver.yaml
+  - cluster-total.yaml
+  - controller-manager.yaml
+  - k8s-resources-cluster.yaml
+  - k8s-resources-namespace.yaml
+  - k8s-resources-node.yaml
+  - k8s-resources-pod.yaml
+  - k8s-resources-workload.yaml
+  - k8s-resources-workloads-namespace.yaml
+  - namespace-by-pod.yaml
+  - namespace-by-workload.yaml
+  - persistentvolumesusage.yaml
+  - pod-total.yaml
+  - proxy.yaml
