@@ -1,0 +1,7 @@
+resources:
+  - kafka
+  #- rabbitmq.yaml
+  #- consul.yaml
+  #- mongodb.yaml
+  #- postgres
+  

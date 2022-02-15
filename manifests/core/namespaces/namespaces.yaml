@@ -75,3 +75,10 @@ metadata:
   name: keycloak
   labels:
     name: keycloak
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: kafka
+  labels:
+    name: kafka
