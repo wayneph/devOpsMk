@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@bitbucket.org:prevoirsolutionsinformatiques/gitops-baremetal.git
+    repoURL: git@github.com:wayneph/devOpsMk.git
     targetRevision: HEAD
     path: manifests/core/rbac
   destination:
