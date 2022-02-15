@@ -1,0 +1,8 @@
+mkadd='minikube addons list'
+mkda='minikube dashboard'
+mkdel='minikube delete --all'
+mkp='minikube pause'
+mkst='minikube status'
+mkstart='minikube start'
+mkstop='minikube stop'
+mkup='minikube unpause'
